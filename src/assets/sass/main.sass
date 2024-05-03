@@ -1,0 +1,36 @@
+@import './base.sass'
+@import './vars.sass'
+
+*
+	transition: all .3s ease-in-out
+
+html
+	scroll-behavior: smooth
+
+body
+	display: block
+	width: 100%
+	font-family: $default-font
+	font-style: normal
+	margin: 0 auto
+	background-color: #F7F9FC
+
+#app
+	height: 100vh
+	padding: 24px
+
+input,
+button
+	border: none
+	outline: none
+	background-color: transparent
+
+// @media (hover: hover)
+// 	a:hover
+// 		background-color: hsla(160, 100%, 37%, 0.2)
+
+// @media (min-width: 1024px)
+// 	#app
+// 		display: grid
+// 		grid-template-columns: 1fr 1fr
+// 		padding: 0 2rem
