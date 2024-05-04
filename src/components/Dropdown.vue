@@ -5,14 +5,20 @@
     </div>
 
     <div class="dropdown__control">
-      <p class="dropdown__control__counter">Выбрано {{ count }} из {{ list.length }}</p>
-      <button class="dropdown__control__button">
+      <p class="dropdown__control__counter">Выбрано {{ activeList.length }} из {{ list.length }}</p>
+      <button class="dropdown__control__button" @click="resetCounter">
         Сбросить
       </button>
     </div>
 
     <div class="dropdown__list">
-      <List v-for="(item, idx) in list" :key="idx" :id="`cb${idx + 1}`" :text="item" />
+      <List
+        v-for="item in list"
+        :key="item.id"
+        :id="`cb${item.id + 1}`"
+        :text="item.value"
+        @checkbox-toggled="toggleCheckbox"
+      />
     </div>
   </div>
 </template>
@@ -25,7 +31,19 @@ import List from './List.vue'
 const props = defineProps({
   list: Array
 });
-const count = ref(0);
+const activeList = ref([]);
+
+function toggleCheckbox(id) {
+  const index = activeList.value.indexOf(id);
+  if (index === -1) {
+    activeList.value.push(id);
+  } else {
+    activeList.value.splice(index, 1);
+  }
+}
+function resetCounter() {
+  activeList.value = [];
+}
 </script>
 
 <style scoped>
@@ -66,6 +84,7 @@ const count = ref(0);
 
 .dropdown__control__button {
   color: #007BFF;
+  cursor: pointer;
 }
 
 .dropdown__list {

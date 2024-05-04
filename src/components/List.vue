@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <div class="list__checkbox">
-      <input type="checkbox" :id="id" />
+      <input type="checkbox" :id="id" @change="$emit('checkbox-toggled', id)" />
       <label :for="id"></label>
     </div>
     <p class="list__text">{{ text }}</p>
@@ -9,10 +9,13 @@
 </template>
 
 <script setup>
+import { defineProps, defineEmits } from 'vue';
+
 const props = defineProps({
   id: String,
-  text: String
+  text: [String, Number] 
 });
+const { emit } = defineEmits(['checkbox-toggled']);
 </script>
 
 <style scoped>

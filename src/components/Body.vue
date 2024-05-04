@@ -8,7 +8,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { fetchData } from '@/composables/api';
-import { uniqueArray, flattenedArray, removeUndefined } from '@/composables/actions';
+import { flattenedArray, removeUndefined, uniqueArray, addID } from '@/composables/actions';
 import Filter from './Filter.vue'
 import Table from './Table.vue'
 
@@ -20,11 +20,11 @@ onMounted(async () => {
   data.value = await fetchData();
 
   years.value = data.value.map(item => item.first_publish_year);
-  years.value = uniqueArray(removeUndefined(years.value.sort()))
+  years.value = addID(uniqueArray(removeUndefined(years.value.sort())));
 
   formats.value = data.value.map(item => item.format);
   formats.value = flattenedArray(formats.value);
-  formats.value = uniqueArray(removeUndefined(formats.value.sort()))
+  formats.value = addID(uniqueArray(removeUndefined(formats.value.sort())));
 });
 </script>
 
