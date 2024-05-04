@@ -15,8 +15,9 @@
       <List
         v-for="item in list"
         :key="item.id"
-        :id="`cb${item.id + 1}`"
+        :id="`cb${item.id}`"
         :text="item.value"
+        :checked="activeList.includes(`cb${item.id}`)"
         @checkbox-toggled="toggleCheckbox"
       />
     </div>
