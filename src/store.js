@@ -9,7 +9,11 @@ const store = createStore({
       years: [],
       genres: [],
       main_query: '',
-      filtered_books: []
+      years_query: '',
+      genres_query: '',
+      filtered_books: [],
+      filtered_years: [],
+      filtered_genres: []
     };
   },
   mutations: {
@@ -19,23 +23,35 @@ const store = createStore({
     },
     setYears(state, years) {
       state.years = years;
+      state.filtered_years = years;
     },
     setGenres(state, genres) {
       state.genres = genres;
+      state.filtered_genres = genres;
     },
-    setSearchQuery(state, query) {
+    setMainQuery(state, query) {
       state.main_query = query;
+      state.filtered_books = state.books.filter(book =>
+        book.title.toLowerCase().includes(query.toLowerCase())
+      );
+    },
+    setYearsQuery(state, query) {
+      state.years_query = query;
+      state.filtered_years = state.years.filter(year =>
+        year.value.toString().toLowerCase().includes(query.toLowerCase())
+      );
+    },
+    setGenresQuery(state, query) {
+      state.genres_query = query;
+      state.filtered_genres = state.genres.filter(genre =>
+        genre.value.toLowerCase().includes(query.toLowerCase())
+      );
     },
     setFilteredBooks(state, filteredBooks) {
       state.filtered_books = filteredBooks;
     }
   },
   actions: {
-    // filterBooks(state, query) {
-    //   return state.filtered_books = state.books.filter((book) => {
-    //     return book.title.toLowerCase().includes(query.toLowerCase())
-    //   })
-    // }
     fetchBooks({ commit, dispatch }) {
       return axios.get('https://freetestapi.com/api/v1/books').then(res => {
         commit('setBooks', res.data)
@@ -55,7 +71,13 @@ const store = createStore({
       commit('setGenres', genres)
     },
     filterBooks({ commit }, query) {
-      commit('filterBooks', query)
+      commit('setMainQuery', query);
+    },
+    findByQuery({ commit }, { query, idx }) {
+      if (idx === 1)
+        commit('setYearsQuery', query);
+      else if (idx === 2)
+        commit('setGenresQuery', query);
     }
   },
   getters: {

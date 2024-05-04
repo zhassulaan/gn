@@ -1,12 +1,17 @@
 <template>
   <div class="search">
-    <input type="text" placeholder="Поиск" required pattern=".*" class="search__input" />
+    <input type="text" placeholder="Поиск" required pattern=".*" class="search__input" @input="search" />
     <search-grey class="search__button" />
   </div>
 </template>
 
 <script setup>
 import SearchGrey from './icons/search/Grey.vue'
+
+const emit = defineEmits(['search']);
+const search = (e) => {
+  emit('search', e.target.value);
+};
 </script>
 
 <style scoped>

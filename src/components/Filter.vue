@@ -1,13 +1,14 @@
 <template>
   <div class="filter">
-    <Search />
+    <Search @search="handleMainSearch" />
 
     <div class="filter__buttons">
       <div class="filter__buttons__box">
         <Button :icon="Calendar" text="Год" :onclick="() => handleDropdown(1)" />
         <Dropdown
           v-if="active === 1"
-          :defaultList="$store.state.years"
+          :idx="1"
+          :defaultList="$store.state.filtered_years"
           :activeList="selectedYears"
           @toggle="toggleYear"
           @reset="resetYear"
@@ -18,7 +19,8 @@
         <Button :icon="Building" text="Жанр книги" :onclick="() => handleDropdown(2)" />
         <Dropdown
           v-if="active === 2"
-          :defaultList="$store.state.genres"
+          :idx="2"
+          :defaultList="$store.state.filtered_genres"
           :activeList="selectedFormats"
           @toggle="toggleFormat"
           @reset="resetFormat"
@@ -32,6 +34,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 import Search from './Search.vue'
 import Button from './Button.vue'
 import Dropdown from './Dropdown.vue'
@@ -39,10 +42,14 @@ import Calendar from './icons/Calendar.vue'
 import Building from './icons/Building.vue'
 import SearchWhite from './icons/search/White.vue'
 
+const store = useStore();
 const active = ref(0);
 const selectedYears = ref([]);
 const selectedFormats = ref([]);
 
+function handleMainSearch(search) {
+  store.dispatch('filterBooks', search);
+}
 function handleDropdown(id) {
   if (!active.value || active.value !== id)
     active.value = id;

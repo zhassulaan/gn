@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <div class="dropdown__search">
-      <Search />
+      <Search @search="handleDropdownSearch" />
     </div>
 
     <div class="dropdown__control">
@@ -25,16 +25,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useStore } from 'vuex';
 import Search from './Search.vue'
 import List from './List.vue'
 
+const store = useStore();
 const props = defineProps({
+  idx: Number,
   defaultList: Array,
   activeList: Array
 });
 
-const { emit } = defineEmits(['toggle', 'reset']);
+function handleDropdownSearch(search) {
+  store.dispatch('findByQuery', { query: search, idx: props.idx });
+}
 </script>
 
 <style scoped>

@@ -15,17 +15,13 @@
       </div>
     </div>
     <div class="table__body">
-      <Row v-for="book in $store.state.books" :key="book.key" :book="book" />
+      <Row v-for="book in $store.state.filtered_books" :key="book.key" :book="book" />
     </div>
   </div>
 </template>
 
 <script setup>
 import Row from './Row.vue'
-
-import { useStore } from 'vuex';
-const store = useStore();
-console.log(store.state);
 </script>
 
 <style scoped>
