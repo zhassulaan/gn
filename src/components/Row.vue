@@ -3,22 +3,43 @@
     <div class="row__cell" :style="{ width: '16.5278vw' }">
       <p class="row__cell__text">{{ book.title }}</p>
     </div>
+
     <div class="row__cell" :style="{ width: '12.4306vw' }">
       <p v-for="(author, idx) in book.author" :key="idx" class="row__cell__text">{{ author }}</p>
     </div>
+
     <div class="row__cell" :style="{ width: '8.6806vw', justifyContent: 'end' }">
       <p class="row__cell__text">{{ book.publication_year }}</p>
     </div>
+
     <div class="row__cell row__cell_blue" :style="{ width: '58.8889vw' }">
-      <p v-for="(format, idx) in book.genre" :key="idx" class="row__cell__text">{{ format }}</p>
+      <p
+        v-if="book.genre.length > 3 && book.genre.length !== genre.length"
+        v-for="(genreItem, idx) in genre"
+        :key="idx"
+        class="row__cell__text"
+      >{{ genreItem }}</p>
+      <p
+        v-if="book.genre.length > 3 && book.genre.length !== genre.length"
+        @click="showAllGenre"
+      >еще +{{ book.genre.length - 3 }}</p>
+
+      <p v-else v-for="(genreItem, ids) in book.genre" :key="ids" class="row__cell__text">{{ genreItem }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
 const props = defineProps({
   book: Object
 });
+const genre = ref(props.book.genre.slice(0, 3));
+
+function showAllGenre() {
+  genre.value = props.book.genre;
+}
 </script>
 
 <style scoped>

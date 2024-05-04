@@ -32,6 +32,11 @@ const store = createStore({
       state.genres = genres;
       state.filtered_genres = genres;
     },
+    validationBooks(state, books) {
+      state.temp_array = books.filter(book => 
+        book.title && book.author && book.publication_year && book.genre
+      );
+    },
     setFilteredBooks(state, books) {
       state.filtered_books = books;
     },
@@ -80,9 +85,11 @@ const store = createStore({
     }
   },
   actions: {
-    fetchBooks({ commit, dispatch }) {
+    fetchBooks({ commit, dispatch, state }) {
       return axios.get('https://freetestapi.com/api/v1/books').then(res => {
-        commit('setBooks', res.data)
+        commit('validationBooks', res.data);
+        commit('setBooks', state.temp_array);
+        commit('setTempArray', []);
         dispatch('getYears');
         dispatch('getGenres');
       })
@@ -90,13 +97,13 @@ const store = createStore({
     getYears({ commit, state }) {
       let years = state.books.map(item => item.publication_year);
       years = addID(uniqueArray(removeUndefined(years.sort())));
-      commit('setYears', years)
+      commit('setYears', years);
     },
     getGenres({ commit, state }) {
       let genres = state.books.map(item => item.genre);
       genres = flattenedArray(genres);
       genres = addID(uniqueArray(removeUndefined(genres.sort())));
-      commit('setGenres', genres)
+      commit('setGenres', genres);
     },
     findByTitle({ commit }, query) {
       commit('setTitleQuery', query);
