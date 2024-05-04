@@ -21,7 +21,6 @@ const props = defineProps({
   text: [String, Number],
   checked: Boolean
 });
-const { emit } = defineEmits(['checkbox-toggled']);
 </script>
 
 <style scoped>

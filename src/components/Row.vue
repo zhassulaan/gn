@@ -4,13 +4,13 @@
       <p class="row__cell__text">{{ book.title }}</p>
     </div>
     <div class="row__cell" :style="{ width: '12.4306vw' }">
-      <p v-for="(author, idx) in book.author_name" :key="idx" class="row__cell__text">{{ author }}</p>
+      <p v-for="(author, idx) in book.author" :key="idx" class="row__cell__text">{{ author }}</p>
     </div>
     <div class="row__cell" :style="{ width: '8.6806vw', justifyContent: 'end' }">
-      <p class="row__cell__text">{{ book.first_publish_year }}</p>
+      <p class="row__cell__text">{{ book.publication_year }}</p>
     </div>
     <div class="row__cell row__cell_blue" :style="{ width: '58.8889vw' }">
-      <p v-for="(format, idx) in book.format" :key="idx" class="row__cell__text">{{ format }}</p>
+      <p v-for="(format, idx) in book.genre" :key="idx" class="row__cell__text">{{ format }}</p>
     </div>
   </div>
 </template>

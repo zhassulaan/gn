@@ -11,11 +11,11 @@
         <p class="table__header__cell__text">Год издания</p>
       </div>
       <div class="table__header__cell" :style="{ width: '58.8889vw' }">
-        <p class="table__header__cell__text">Формат книги</p>
+        <p class="table__header__cell__text">Жанр книги</p>
       </div>
     </div>
     <div class="table__body">
-      <Row v-for="book in data" :key="book.key" :book="book" />
+      <Row v-for="book in $store.state.books" :key="book.key" :book="book" />
     </div>
   </div>
 </template>
@@ -23,9 +23,9 @@
 <script setup>
 import Row from './Row.vue'
 
-const props = defineProps({
-  data: Array
-});
+import { useStore } from 'vuex';
+const store = useStore();
+console.log(store.state);
 </script>
 
 <style scoped>

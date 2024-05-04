@@ -7,7 +7,7 @@
         <Button :icon="Calendar" text="Год" :onclick="() => handleDropdown(1)" />
         <Dropdown
           v-if="active === 1"
-          :defaultList="years"
+          :defaultList="$store.state.years"
           :activeList="selectedYears"
           @toggle="toggleYear"
           @reset="resetYear"
@@ -15,10 +15,10 @@
       </div>
 
       <div class="filter__buttons__box">
-        <Button :icon="Building" text="Формат книги" :onclick="() => handleDropdown(2)" />
+        <Button :icon="Building" text="Жанр книги" :onclick="() => handleDropdown(2)" />
         <Dropdown
           v-if="active === 2"
-          :defaultList="formats"
+          :defaultList="$store.state.genres"
           :activeList="selectedFormats"
           @toggle="toggleFormat"
           @reset="resetFormat"
@@ -39,10 +39,6 @@ import Calendar from './icons/Calendar.vue'
 import Building from './icons/Building.vue'
 import SearchWhite from './icons/search/White.vue'
 
-const props = defineProps({
-  years: Array,
-  formats: Array
-});
 const active = ref(0);
 const selectedYears = ref([]);
 const selectedFormats = ref([]);
