@@ -6,7 +6,7 @@
 
     <div class="dropdown__control">
       <p class="dropdown__control__counter">Выбрано {{ activeList.length }} из {{ defaultList.length }}</p>
-      <button class="dropdown__control__button" @click="$emit('reset')">
+      <button class="dropdown__control__button" @click="handleReset">
         Сбросить
       </button>
     </div>
@@ -15,10 +15,10 @@
       <List
         v-for="item in defaultList"
         :key="item.id"
-        :id="`cb${item.id}`"
+        :id="item.id"
         :text="item.value"
-        :checked="activeList.includes(`cb${item.id}`)"
-        @checkbox-toggled="$emit('toggle', `cb${item.id}`)"
+        :checked="activeList.includes(item.id)"
+        @toggle="handleSelect(item.id)"
       />
     </div>
   </div>
@@ -38,6 +38,12 @@ const props = defineProps({
 
 function handleDropdownSearch(search) {
   store.dispatch('findByQuery', { query: search, idx: props.idx });
+}
+function handleSelect(id) {
+  store.dispatch('select', { id: id, idx: props.idx });
+}
+function handleReset() {
+  store.dispatch('reset', { idx: props.idx });
 }
 </script>
 

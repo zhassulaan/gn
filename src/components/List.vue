@@ -5,7 +5,7 @@
         type="checkbox"
         :id="id"
         :checked="checked"
-        @change="$emit('checkbox-toggled')"
+        @change="$emit('toggle')"
       />
       <label :for="id"></label>
     </div>
@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
-
 const props = defineProps({
   id: String,
   text: [String, Number],

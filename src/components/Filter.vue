@@ -9,9 +9,7 @@
           v-if="active === 1"
           :idx="1"
           :defaultList="$store.state.filtered_years"
-          :activeList="selectedYears"
-          @toggle="toggleYear"
-          @reset="resetYear"
+          :activeList="$store.state.selected_years"
         />
       </div>
 
@@ -21,13 +19,11 @@
           v-if="active === 2"
           :idx="2"
           :defaultList="$store.state.filtered_genres"
-          :activeList="selectedFormats"
-          @toggle="toggleFormat"
-          @reset="resetFormat"
+          :activeList="$store.state.selected_genres"
         />
       </div>
 
-      <Button :icon="SearchWhite" text="Поиск" :isActive="true" />
+      <Button :icon="SearchWhite" text="Поиск" :isActive="true" @click="console.log($store.state);$store.dispatch('filterBooks')" />
     </div>
   </div>
 </template>
@@ -44,39 +40,15 @@ import SearchWhite from './icons/search/White.vue'
 
 const store = useStore();
 const active = ref(0);
-const selectedYears = ref([]);
-const selectedFormats = ref([]);
 
 function handleMainSearch(search) {
-  store.dispatch('filterBooks', search);
+  store.dispatch('findByTitle', search);
 }
 function handleDropdown(id) {
   if (!active.value || active.value !== id)
     active.value = id;
   else
     active.value = 0;
-}
-function toggleYear(id) {
-  const index = selectedYears.value.indexOf(id);
-  if (index === -1) {
-    selectedYears.value.push(id);
-  } else {
-    selectedYears.value.splice(index, 1);
-  }
-}
-function toggleFormat(id) {
-  const index = selectedFormats.value.indexOf(id);
-  if (index === -1) {
-    selectedFormats.value.push(id);
-  } else {
-    selectedFormats.value.splice(index, 1);
-  }
-}
-function resetYear() {
-  selectedYears.value = [];
-}
-function resetFormat() {
-  selectedFormats.value = [];
 }
 </script>
 

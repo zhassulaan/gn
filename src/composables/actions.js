@@ -11,7 +11,7 @@ function uniqueArray(arr) {
 }
 
 function addID(arr) {
-  return arr.map((el, index) => ({ id: index + 1, value: el }));
+  return arr.map((el, index) => ({ id: `cb${index + 1}`, value: el }));
 }
 
 export { flattenedArray, removeUndefined, uniqueArray, addID };
