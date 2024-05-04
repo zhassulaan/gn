@@ -5,7 +5,7 @@
         type="checkbox"
         :id="id"
         :checked="checked"
-        @change="$emit('checkbox-toggled', id)"
+        @change="$emit('checkbox-toggled')"
       />
       <label :for="id"></label>
     </div>

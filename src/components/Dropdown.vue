@@ -5,20 +5,20 @@
     </div>
 
     <div class="dropdown__control">
-      <p class="dropdown__control__counter">Выбрано {{ activeList.length }} из {{ list.length }}</p>
-      <button class="dropdown__control__button" @click="resetCounter">
+      <p class="dropdown__control__counter">Выбрано {{ activeList.length }} из {{ defaultList.length }}</p>
+      <button class="dropdown__control__button" @click="$emit('reset')">
         Сбросить
       </button>
     </div>
 
     <div class="dropdown__list">
       <List
-        v-for="item in list"
+        v-for="item in defaultList"
         :key="item.id"
         :id="`cb${item.id}`"
         :text="item.value"
         :checked="activeList.includes(`cb${item.id}`)"
-        @checkbox-toggled="toggleCheckbox"
+        @checkbox-toggled="$emit('toggle', `cb${item.id}`)"
       />
     </div>
   </div>
@@ -30,21 +30,11 @@ import Search from './Search.vue'
 import List from './List.vue'
 
 const props = defineProps({
-  list: Array
+  defaultList: Array,
+  activeList: Array
 });
-const activeList = ref([]);
 
-function toggleCheckbox(id) {
-  const index = activeList.value.indexOf(id);
-  if (index === -1) {
-    activeList.value.push(id);
-  } else {
-    activeList.value.splice(index, 1);
-  }
-}
-function resetCounter() {
-  activeList.value = [];
-}
+const { emit } = defineEmits(['toggle', 'reset']);
 </script>
 
 <style scoped>
