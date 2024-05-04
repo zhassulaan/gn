@@ -7,15 +7,15 @@ const store = createStore({
     return {
       books: [],
       years: [],
-      genres: [],
+      formats: [],
       filtered_books: [],
       filtered_years: [],
-      filtered_genres: [],
+      filtered_formats: [],
       main_query: '',
       years_query: '',
-      genres_query: '',
+      formats_query: '',
       selected_years: [],
-      selected_genres: [],
+      selected_formats: [],
       temp_array: []
     };
   },
@@ -24,29 +24,29 @@ const store = createStore({
       state.books = books;
       state.filtered_books = books;
     },
-    setYears(state, years) {
-      state.years = years;
-      state.filtered_years = years;
-    },
-    setGenres(state, genres) {
-      state.genres = genres;
-      state.filtered_genres = genres;
-    },
     validationBooks(state, books) {
       state.temp_array = books.filter(book => 
-        book.title && book.author && book.publication_year && book.genre
+        book.title && book.author_name && book.first_publish_year && book.format
       );
     },
     setFilteredBooks(state, books) {
       state.filtered_books = books;
     },
+    setYears(state, years) {
+      state.years = years;
+      state.filtered_years = years;
+    },
+    setFormats(state, formats) {
+      state.formats = formats;
+      state.filtered_formats = formats;
+    },
     getYearsByIds(state, ids) {
       const yearsArray = state.years.filter(year => ids.includes(year.id));
       state.temp_array = yearsArray.map(year => year.value);
     },
-    getGenresByIds(state, ids) {
-      const genresArray = state.genres.filter(year => ids.includes(year.id));
-      state.temp_array = genresArray.map(genre => genre.value);
+    getFormatsByIds(state, ids) {
+      const formatsArray = state.formats.filter(year => ids.includes(year.id));
+      state.temp_array = formatsArray.map(format => format.value);
     },
     setTitleQuery(state, query) {
       state.main_query = query;
@@ -60,17 +60,17 @@ const store = createStore({
         year.value.toString().toLowerCase().includes(query.toLowerCase())
       );
     },
-    setGenresQuery(state, query) {
-      state.genres_query = query;
-      state.filtered_genres = state.genres.filter(genre =>
-        genre.value.toLowerCase().includes(query.toLowerCase())
+    setFormatsQuery(state, query) {
+      state.formats_query = query;
+      state.filtered_formats = state.formats.filter(format =>
+        format.value.toLowerCase().includes(query.toLowerCase())
       );
     },
     setSelectedYears(state, selected_years) {
       state.selected_years = selected_years;
     },
-    setSelectedGenres(state, selected_genres) {
-      state.selected_genres = selected_genres;
+    setSelectedFormats(state, selected_formats) {
+      state.selected_formats = selected_formats;
     },
     setTempArray(state, temp_array) {
       state.temp_array = temp_array;
@@ -86,24 +86,24 @@ const store = createStore({
   },
   actions: {
     fetchBooks({ commit, dispatch, state }) {
-      return axios.get('https://freetestapi.com/api/v1/books').then(res => {
-        commit('validationBooks', res.data);
+      return axios.get('https://openlibrary.org/search.json?q=the+lord+of+the+rings').then(res => {
+        commit('validationBooks', res.data.docs);
         commit('setBooks', state.temp_array);
         commit('setTempArray', []);
         dispatch('getYears');
-        dispatch('getGenres');
+        dispatch('getFormats');
       })
     },
     getYears({ commit, state }) {
-      let years = state.books.map(item => item.publication_year);
+      let years = state.books.map(item => item.first_publish_year);
       years = addID(uniqueArray(removeUndefined(years.sort())));
       commit('setYears', years);
     },
-    getGenres({ commit, state }) {
-      let genres = state.books.map(item => item.genre);
-      genres = flattenedArray(genres);
-      genres = addID(uniqueArray(removeUndefined(genres.sort())));
-      commit('setGenres', genres);
+    getFormats({ commit, state }) {
+      let formats = state.books.map(item => item.format);
+      formats = flattenedArray(formats);
+      formats = addID(uniqueArray(removeUndefined(formats.sort())));
+      commit('setFormats', formats);
     },
     findByTitle({ commit }, query) {
       commit('setTitleQuery', query);
@@ -112,7 +112,7 @@ const store = createStore({
       if (idx === 1)
         commit('setYearsQuery', query);
       else if (idx === 2)
-        commit('setGenresQuery', query);
+        commit('setFormatsQuery', query);
     },
     select({ commit, state }, { id, idx }) {
       if (idx === 1) {
@@ -120,9 +120,9 @@ const store = createStore({
         commit('checkboxOperation', payload);
         commit('setSelectedYears', state.temp_array);
       } else if (idx === 2) {
-        const payload = { array: state.selected_genres, id };
+        const payload = { array: state.selected_formats, id };
         commit('checkboxOperation', payload);
-        commit('setSelectedGenres', state.temp_array);
+        commit('setSelectedFormats', state.temp_array);
       }
       commit('setTempArray', []);
     },
@@ -130,17 +130,17 @@ const store = createStore({
       if (idx === 1)
         commit('setSelectedYears', []);
       else if (idx === 2)
-        commit('setSelectedGenres', []);
+        commit('setSelectedFormats', []);
     },
     filterBooks({ commit, state }) {
       let filteredBooks = state.books;
       if (state.selected_years.length > 0) {
         commit('getYearsByIds', state.selected_years);
-        filteredBooks = filteredBooks.filter(book => state.temp_array.includes(book.publication_year));
+        filteredBooks = filteredBooks.filter(book => state.temp_array.includes(book.first_publish_year));
       }
-      if (state.selected_genres.length > 0) {
-        commit('getGenresByIds', state.selected_genres);
-        filteredBooks = filteredBooks.filter(book => book.genre.some(item => state.temp_array.includes(item)));
+      if (state.selected_formats.length > 0) {
+        commit('getFormatsByIds', state.selected_formats);
+        filteredBooks = filteredBooks.filter(book => book.format.some(item => state.temp_array.includes(item)));
       }
       commit('setTempArray', []);
       commit('setFilteredBooks', filteredBooks);
@@ -149,15 +149,15 @@ const store = createStore({
   getters: {
     books: state => state.books,
     years: state => state.years,
-    genres: state => state.genres,
-    main_query: state => state.main_query,
-    years_query: state => state.years_query,
-    genres_query: state => state.genres_query,
+    formats: state => state.formats,
     filtered_books: state => state.filtered_books,
     filtered_years: state => state.filtered_years,
-    filtered_genres: state => state.filtered_genres,
+    filtered_formats: state => state.filtered_formats,
+    main_query: state => state.main_query,
+    years_query: state => state.years_query,
+    formats_query: state => state.formats_query,
     selected_years: state => state.selected_years,
-    selected_genres: state => state.selected_genres,
+    selected_formats: state => state.selected_formats,
     temp_array: state => state.temp_array
   },
   modules: {

@@ -11,7 +11,7 @@
         <p class="table__header__cell__text">Год издания</p>
       </div>
       <div class="table__header__cell" :style="{ width: '58.8889vw' }">
-        <p class="table__header__cell__text">Жанр книги</p>
+        <p class="table__header__cell__text">Формат книги</p>
       </div>
     </div>
     <div class="table__body">

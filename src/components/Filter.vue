@@ -14,16 +14,16 @@
       </div>
 
       <div class="filter__buttons__box">
-        <Button :icon="Building" text="Жанр книги" :onclick="() => handleDropdown(2)" />
+        <Button :icon="Building" text="Формат книги" :onclick="() => handleDropdown(2)" />
         <Dropdown
           v-if="active === 2"
           :idx="2"
-          :defaultList="$store.state.filtered_genres"
-          :activeList="$store.state.selected_genres"
+          :defaultList="$store.state.filtered_formats"
+          :activeList="$store.state.selected_formats"
         />
       </div>
 
-      <Button :icon="SearchWhite" text="Поиск" :isActive="true" @click="console.log($store.state);$store.dispatch('filterBooks')" />
+      <Button :icon="SearchWhite" text="Поиск" :isActive="true" @click="$store.dispatch('filterBooks')" />
     </div>
   </div>
 </template>

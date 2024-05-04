@@ -5,26 +5,26 @@
     </div>
 
     <div class="row__cell" :style="{ width: '12.4306vw' }">
-      <p v-for="(author, idx) in book.author" :key="idx" class="row__cell__text">{{ author }}</p>
+      <p v-for="(author, idx) in book.author_name" :key="idx" class="row__cell__text">{{ author }}</p>
     </div>
 
     <div class="row__cell" :style="{ width: '8.6806vw', justifyContent: 'end' }">
-      <p class="row__cell__text">{{ book.publication_year }}</p>
+      <p class="row__cell__text">{{ book.first_publish_year }}</p>
     </div>
 
     <div class="row__cell row__cell_blue" :style="{ width: '58.8889vw' }">
       <p
-        v-if="book.genre.length > 3 && book.genre.length !== genre.length"
-        v-for="(genreItem, idx) in genre"
+        v-if="book.format.length > 3 && book.format.length !== format.length"
+        v-for="(formatItem, idx) in format"
         :key="idx"
         class="row__cell__text"
-      >{{ genreItem }}</p>
+      >{{ formatItem }}</p>
       <p
-        v-if="book.genre.length > 3 && book.genre.length !== genre.length"
-        @click="showAllGenre"
-      >еще +{{ book.genre.length - 3 }}</p>
+        v-if="book.format.length > 3 && book.format.length !== format.length"
+        @click="showAllFormat"
+      >еще +{{ book.format.length - 3 }}</p>
 
-      <p v-else v-for="(genreItem, ids) in book.genre" :key="ids" class="row__cell__text">{{ genreItem }}</p>
+      <p v-else v-for="(formatItem, ids) in book.format" :key="ids" class="row__cell__text">{{ formatItem }}</p>
     </div>
   </div>
 </template>
@@ -35,10 +35,10 @@ import { ref } from 'vue'
 const props = defineProps({
   book: Object
 });
-const genre = ref(props.book.genre.slice(0, 3));
+const format = ref(props.book.format.slice(0, 3));
 
-function showAllGenre() {
-  genre.value = props.book.genre;
+function showAllFormat() {
+  format.value = props.book.format;
 }
 </script>
 
