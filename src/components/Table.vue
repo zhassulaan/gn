@@ -21,15 +21,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { fetchData } from '@/composables/api';
 import Row from './Row.vue'
 
-const data = ref([]);
-
-onMounted(async () => {
-  data.value = await fetchData();
-  console.log(data.value);
+const props = defineProps({
+  data: Array
 });
 </script>
 

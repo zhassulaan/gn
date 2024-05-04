@@ -41,7 +41,7 @@ const props = defineProps({
 }
 
 .row:hover {
-  background-color: #F0F2F5;
+  background-color: #F9FAFB;
 }
 
 .row__cell {
