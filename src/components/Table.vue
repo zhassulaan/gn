@@ -26,9 +26,9 @@ import Row from './Row.vue';
 
 <style lang="sass" scoped>
 .table
+  border-radius: 0 0 16px 16px
   width: 100%
   height: calc(100% - 63px)
-  border-radius: 0 0 16px 16px
   &__header,
   &__body
     width: inherit

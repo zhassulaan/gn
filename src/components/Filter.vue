@@ -56,11 +56,11 @@ function handleDropdown(id) {
 .filter
   display: flex
   justify-content: space-between
+  border-radius: 16px 16px 0 0
   width: 100%
   height: 63px
   padding: 11px 23px 12px
   background-color: #FFF
-  border-radius: 16px 16px 0 0
   .search
     width: 360px
   &__buttons

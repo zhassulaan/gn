@@ -40,10 +40,10 @@ input {
 
 input + label {
   display: inline-block;
-  width: 16px;
-  height: 16px;
   border: 1px solid #98A2B3;
   border-radius: 4px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 }
 
@@ -53,16 +53,16 @@ label::after {
 }
 
 label::before {
+  content: '';
+  z-index: -1;
   top: 50%;
   left: 50%;
-  z-index: -1;
-  content: '';
+  transform: translate(-50%, -50%);
+  transition: all .3s;
+  border-radius: 50%;
   width: 32px;
   height: 32px;
   background-color: #FFF;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: all .3s;
 }
 
 input:checked + label,
@@ -83,18 +83,18 @@ input:checked + label {
 }
 
 input:checked + label::after {
-  position: relative;
-  top: -6px;
-  left: 3px;
   content: '\2714';
+  position: relative;
+  top: -4px;
+  left: 3px;
   font-size: 11px;
   color: #FFF;
 }
 
 input {
+  outline: 1px auto #007BFF;
   accent-color: #007BFF;
   mix-blend-mode: multiply;
-  outline: 1px auto #007BFF;
 }
 
 .list__text {

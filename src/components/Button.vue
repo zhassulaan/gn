@@ -40,10 +40,10 @@ const props = defineProps({
   position: relative;
   display: flex;
   gap: 12px;
+  border-radius: 8px;
   width: 100%;
   padding: 12px 20px;
   background-color: #F7F9FC;
-  border-radius: 8px;
 }
 
 .button:hover {
@@ -65,15 +65,15 @@ const props = defineProps({
 }
 
 .button_blue::before {
+  content: '';
   position: absolute;
+  z-index: 1;
   top: 50%;
   left: 50%;
-  z-index: 1;
-  content: '';
   transform: translate(-50%, -50%);
-  background-color: #0070E8;
-  border-radius: 50%;
   transition: all .3s;
+  border-radius: 50%;
+  background-color: #0070E8;
 }
 
 .button_blue:active::before,

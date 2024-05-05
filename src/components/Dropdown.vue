@@ -50,19 +50,19 @@ function handleReset() {
 <style scoped>
 .dropdown {
   position: absolute;
+  z-index: 2;
   top: calc(100% + 16px);
   left: 0;
-  z-index: 2;
+  border: 1px solid #F0F2F5;
+  border-radius: 8px;
   width: 240px;
   height: 320px;
   background-color: #FFF;
-  border: 1px solid #F0F2F5;
-  border-radius: 8px;
 }
 
 .dropdown__search {
-  height: 40px;
   margin: 7px 0 8px;
+  height: 40px;
   padding: 0 7px;
 }
 
@@ -73,14 +73,14 @@ function handleReset() {
 }
 
 .dropdown__control__button {
-  line-height: 16px;
   font-size: 12px;
+  line-height: 16px;
   font-weight: 500;
   color: #007BFF;
 }
 
 .dropdown__list {
-  height: 239px;
   overflow-y: scroll;
+  height: 239px;
 }
 </style>

@@ -52,10 +52,10 @@ function showAllFormat() {
 }
 
 .row::after {
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
-  content: "";
   width: 100%;
   height: 1px;
   background-color: #F0F2F5;
@@ -67,8 +67,8 @@ function showAllFormat() {
 
 .row__cell {
   display: flex;
-  padding: 24px;
   overflow-x: scroll;
+  padding: 24px;
 }
 
 .row__cell::-webkit-scrollbar {
@@ -85,8 +85,8 @@ function showAllFormat() {
 }
 
 .row__cell_blue .row__cell__text {
-  padding: 4px 8px;
   border-radius: 8px;
+  padding: 4px 8px;
   background-color: #E6F2FF
 }
 </style>

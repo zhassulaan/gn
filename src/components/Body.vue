@@ -12,9 +12,9 @@ import Table from './Table.vue';
 
 <style scoped>
 .container {
-  height: calc(100% - 72px);
+  overflow: hidden;
   border: 1px solid #F0F2F5;
   border-radius: 16px;
-  overflow: hidden;
+  height: calc(100% - 72px);
 }
 </style>

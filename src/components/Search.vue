@@ -23,13 +23,13 @@ const search = (e) => {
   &__input::placeholder
     color: #98A2B3
   &__input
+    border-radius: 8px
     width: 100%
     padding: 12px 36px 12px 16px
-    line-height: 16px
-    font-size: 14px
-    font-weight: 500
     background-color: #F7F9FC
-    border-radius: 8px
+    font-size: 14px
+    line-height: 16px
+    font-weight: 500
     &:hover,
     &:focus,
     &:valid,
@@ -40,8 +40,8 @@ const search = (e) => {
     &:hover
       background-color: #E6F2FF
     &:focus
-      background-color: #FFF
       border: 1px solid #007BFF
+      background-color: #FFF
     &:valid
       background-color: #F7F9FC
   &__button
