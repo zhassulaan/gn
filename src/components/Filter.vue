@@ -52,28 +52,21 @@ function handleDropdown(id) {
 }
 </script>
 
-<style scoped>
-.filter {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 63px;
-  padding: 11px 23px 12px;
-  background-color: #FFF;
-  border-radius: 16px 16px 0 0;
-}
-
-.search {
-  width: 360px;
-}
-
-.filter__buttons {
-  display: flex;
-  gap: 12px;
-  height: 100%;
-}
-
-.filter__buttons__box {
-  position: relative;
-}
+<style lang="sass" scoped>
+.filter
+  display: flex
+  justify-content: space-between
+  width: 100%
+  height: 63px
+  padding: 11px 23px 12px
+  background-color: #FFF
+  border-radius: 16px 16px 0 0
+  .search
+    width: 360px
+  &__buttons
+    display: flex
+    gap: 12px
+    height: 100%
+    &__box
+      position: relative
 </style>

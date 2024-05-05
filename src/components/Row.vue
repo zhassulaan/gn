@@ -81,7 +81,6 @@ function showAllFormat() {
 }
 
 .row__cell__text {
-  width: max-content;
   font-weight: 400;
 }
 

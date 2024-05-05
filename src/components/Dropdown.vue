@@ -5,7 +5,7 @@
     </div>
 
     <div class="dropdown__control">
-      <p class="dropdown__control__counter">Выбрано {{ activeList.length }} из {{ defaultList.length }}</p>
+      <p class="subtitle">Выбрано {{ activeList.length }} из {{ defaultList.length }}</p>
       <button class="dropdown__control__button" @click="handleReset">
         Сбросить
       </button>
@@ -72,18 +72,10 @@ function handleReset() {
   padding: 4px 11px;
 }
 
-.dropdown__control__counter,
 .dropdown__control__button {
   line-height: 16px;
   font-size: 12px;
   font-weight: 500;
-}
-
-.dropdown__control__counter {
-  color: #667185;
-}
-
-.dropdown__control__button {
   color: #007BFF;
   cursor: pointer;
 }
