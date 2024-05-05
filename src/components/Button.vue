@@ -13,7 +13,7 @@ const props = defineProps({
     type: Boolean,
     default: false
   }
-})
+});
 </script>
 
 <style scoped>
@@ -21,9 +21,7 @@ const props = defineProps({
   0% {
     width: 1px;
     height: 1px;
-  }
-  
-  100% {
+  } 100% {
     width: 400px;
     height: 400px;
   }
@@ -33,9 +31,7 @@ const props = defineProps({
   0% {
     width: 400px;
     height: 400px;
-  }
-  
-  100% {
+  } 100% {
     width: 1px;
     height: 1px;
   }

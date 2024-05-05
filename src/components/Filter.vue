@@ -31,12 +31,12 @@
 <script setup>
 import { ref } from 'vue';
 import { useStore } from 'vuex';
-import Search from './Search.vue'
-import Button from './Button.vue'
-import Dropdown from './Dropdown.vue'
-import Calendar from './icons/Calendar.vue'
-import Building from './icons/Building.vue'
-import SearchWhite from './icons/search/White.vue'
+import Search from './Search.vue';
+import Button from './Button.vue';
+import Dropdown from './Dropdown.vue';
+import Calendar from './icons/Calendar.vue';
+import Building from './icons/Building.vue';
+import SearchWhite from './icons/search/White.vue';
 
 const store = useStore();
 const active = ref(0);

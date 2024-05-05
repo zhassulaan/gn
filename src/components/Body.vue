@@ -6,8 +6,8 @@
 </template>
 
 <script setup>
-import Filter from './Filter.vue'
-import Table from './Table.vue'
+import Filter from './Filter.vue';
+import Table from './Table.vue';
 </script>
 
 <style scoped>

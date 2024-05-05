@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import Row from './Row.vue'
+import Row from './Row.vue';
 </script>
 
 <style scoped>
