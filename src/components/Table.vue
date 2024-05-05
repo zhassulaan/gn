@@ -24,41 +24,25 @@
 import Row from './Row.vue';
 </script>
 
-<style scoped>
-.table {
-  width: 100%;
-  height: calc(100% - 63px);
-  border-radius: 0 0 16px 16px;
-}
-
-.table__header,
-.table__body {
-  width: inherit;
-}
-
-.table__header {
-  display: flex;
-  height: 40px;
-}
-
-.table__header__cell {
-  padding: 12px 24px;
-}
-
-.table__header__cell__text {
-  width: max-content;
-  line-height: 16px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #667185;
-}
-
-.table__body {
-  height: calc(100% - 40px);
-  overflow-y: scroll;
-}
-
-.table__body::-webkit-scrollbar {
-  display: none
-}
+<style lang="sass" scoped>
+.table
+  width: 100%
+  height: calc(100% - 63px)
+  border-radius: 0 0 16px 16px
+  &__header,
+  &__body
+    width: inherit
+  &__header
+    display: flex
+    height: 40px
+    &__cell
+      padding: 12px 24px
+      &__text
+        width: max-content
+        color: #667185
+  &__body
+    height: calc(100% - 40px)
+    overflow-y: scroll
+    &::-webkit-scrollbar
+      display: none
 </style>

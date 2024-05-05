@@ -15,5 +15,6 @@ import Table from './Table.vue';
   height: calc(100% - 72px);
   border: 1px solid #F0F2F5;
   border-radius: 16px;
+  overflow: hidden;
 }
 </style>

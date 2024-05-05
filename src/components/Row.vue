@@ -82,11 +82,7 @@ function showAllFormat() {
 
 .row__cell__text {
   width: max-content;
-  line-height: 16px;
-  font-size: 12px;
   font-weight: 400;
-  text-wrap: nowrap;
-  color: #1D2739;
 }
 
 .row__cell_blue .row__cell__text {

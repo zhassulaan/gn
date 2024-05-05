@@ -98,9 +98,6 @@ input {
 }
 
 .list__text {
-  line-height: 16px;
   font-size: 14px;
-  font-weight: 500;
-  color: #1D2739;
 }
 </style>

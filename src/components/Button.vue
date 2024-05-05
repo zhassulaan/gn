@@ -26,7 +26,6 @@ const props = defineProps({
     height: 400px;
   }
 }
-
 @keyframes button-animation-out {
   0% {
     width: 400px;
@@ -83,18 +82,13 @@ const props = defineProps({
   animation: button-animation-in 2.5s;
 }
 
-
 .button__icon,
 .button__text {
   z-index: 2;
 }
 
 .button__text {
-  line-height: 16px;
   font-size: 14px;
-  font-weight: 500;
-  color: #1D2739;
-  text-wrap: nowrap;
 }
 
 .button_blue .button__text {

@@ -1,6 +1,11 @@
 @import './vars.sass'
 
-*
+*,
+*::before,
+*::after
+	box-sizing: border-box
+	margin: 0
+	font-weight: normal
 	transition: all .3s ease-in-out
 
 html
@@ -23,3 +28,15 @@ button
 	border: none
 	outline: none
 	background-color: transparent
+
+h3
+	line-height: 24px
+	font-size: 18px
+	font-weight: 600
+	color: $dark
+p
+	line-height: 16px
+	font-size: 12px
+	font-weight: 500
+	color: $primary-text
+	text-wrap: nowrap
