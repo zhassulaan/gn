@@ -44,7 +44,6 @@ const props = defineProps({
   padding: 12px 20px;
   background-color: #F7F9FC;
   border-radius: 8px;
-  cursor: pointer;
 }
 
 .button:hover {

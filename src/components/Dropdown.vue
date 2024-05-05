@@ -77,7 +77,6 @@ function handleReset() {
   font-size: 12px;
   font-weight: 500;
   color: #007BFF;
-  cursor: pointer;
 }
 
 .dropdown__list {

@@ -32,6 +32,10 @@ button {
   background-color: transparent;
 }
 
+button {
+  cursor: pointer;
+}
+
 h3 {
   line-height: 24px;
   font-size: 18px;
